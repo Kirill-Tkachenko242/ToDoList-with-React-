@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import TaskContext from './TaskContext';
 
-const TaskProvider = () => {
+const TaskProvider = (children) => {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState('all');
 

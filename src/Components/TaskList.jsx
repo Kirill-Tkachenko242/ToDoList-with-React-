@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import TaskItem from './TaskItem';
+import TaskContext from '../context/TaskContext';
 
-const TaskList = ({ tasks, deleteTask, toggleTaskCompletion }) => {
+const TaskList = () => {
+    const {tasks} = useContext(TaskContext)
     return (
-        <div>
+        <div id="taskList">
             {tasks.map((task, index) => (
                 <TaskItem
                     key={index}
                     index={index}
                     task={task}
-                    deleteTask={() => deleteTask(index)}
-                    toggleTaskCompletion={() => toggleTaskCompletion(index)}
                 />
             ))}
         </div>

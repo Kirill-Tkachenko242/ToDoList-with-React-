@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import TaskContext from '../context/TaskContext';
 
-const TaskFilter = ({ setFilter }) => {
+const TaskFilter = () => {
+  const {setFilter} = useContext(TaskContext);
+  const handleChange = (e) => {
+    setFilter(e.target.value);
+  };
+
   return (
-    <select id="taskFilter" style={styles.select} onChange={(e) => setFilter(e.target.value)}>
+    <select id="taskFilter" style={styles.select} onChange={handleChange}>
       <option value="all">Все</option>
       <option value="active">Активные</option>
       <option value="completed">Выполненные</option>

@@ -4,43 +4,12 @@ import TaskList from './TaskList';
 import TaskFilter from './TaskFilter';
 
 const TaskSection = () => {
-    const [tasks, setTasks] = useState([]);
-    const [filter, setFilter] = useState('all');
-
-    const addTask = (taskName) => {
-        setTasks([...tasks, { name: taskName, completed: false }]);
-    };
-
-    const deleteTask = (index) => {
-        setTasks(tasks.filter((_, i) => i !== index));
-    };
-
-    const toggleTaskCompletion = (index) => {
-        const newTasks = tasks.map((task, i) => {
-            if (i === index) {
-                return { ...task, completed: !task.completed };
-            }
-            return task;
-        });
-        setTasks(newTasks);
-    };
-
-    const filteredTasks = tasks.filter((task) => {
-        if (filter === 'active') return !task.completed;
-        if (filter === 'completed') return tasks.completed;
-        return true;
-    });
-
     return (
         <section id="task-section" style={styles.section}>
             <p id="title" style={styles.title}>ToDo List</p>
-            <TaskForm addTask={addTask} />
-            <TaskFilter setFilter={setFilter} />
-            <TaskList
-                tasks={filteredTasks}
-                deleteTask={deleteTask}
-                toggleTaskCompletion={toggleTaskCompletion}
-            />
+            <TaskForm />
+            <TaskFilter />
+            <TaskList />
         </section>
     );
 };

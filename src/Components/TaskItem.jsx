@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import TaskContext from '../context/TaskContext';
 
-const TaskItem = ({ task, index, deleteTask, toggleTaskCompletion }) => {
+const TaskItem = ({task, index}) => {
+  const [deleteTask, toggleTaskCompletion] = useContext(TaskContext);
+
   return (
     <div className="task" style={styles.task}>
       <label>

@@ -1,51 +1,28 @@
 import React, { useState } from 'react';
 
 const TaskForm = ({ addTask }) => {
-  const [taskName, setTaskName] = useState('');
+  const [taskTitle, setTaskTitle] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (taskName.trim()) {
-      addTask(taskName);
-      setTaskName('');
+    if (taskTitle.trim()) {
+      addTask({ title: taskTitle });
+      setTaskTitle('');
     }
   };
 
   return (
-    <form id="addTaskForm" style={styles.form} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="addTaskForm">
       <input
-        id="taskNameInput"
         type="text"
-        placeholder="Добавить задачу"
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        style={styles.input}
+        value={taskTitle}
+        onChange={(e) => setTaskTitle(e.target.value)}
+        placeholder="Enter a new task"
+        id="taskNameInput"
       />
-      <button id="submit" type="submit" style={styles.button}>+</button>
+      <button type="submit" id="addTaskButton">+</button>
     </form>
   );
-};
-
-const styles = {
-  form: {
-    display: 'flex',
-    marginBottom: '10px'
-  },
-  input: {
-    flex: '1',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    marginRight: '10px'
-  },
-  button: {
-    padding: '10px',
-    border: '1px solid black',
-    borderRadius: '4px',
-    backgroundColor: '#f9f9f9',
-    color: 'black',
-    cursor: 'pointer'
-  }
 };
 
 export default TaskForm;

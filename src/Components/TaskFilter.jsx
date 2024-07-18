@@ -1,23 +1,15 @@
 import React from 'react';
 
-const TaskFilter = ({ setFilter }) => {
+const TaskFilter = ({ filter, setFilter }) => {
   return (
-    <select id="taskFilter" style={styles.select} onChange={(e) => setFilter(e.target.value)}>
-      <option value="all">Все</option>
-      <option value="active">Активные</option>
-      <option value="completed">Выполненные</option>
-    </select>
+    <div className="filter-container">
+      <select value={filter} onChange={(e) => setFilter(e.target.value)} id="taskFilter">
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
   );
-};
-
-const styles = {
-  select: {
-    width: '100%',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    marginBottom: '20px'
-  }
 };
 
 export default TaskFilter;

@@ -1,0 +1,11 @@
+/* index.css */
+body {
+    margin: 0;
+    font-family: Arial;
+  }
+  #main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  

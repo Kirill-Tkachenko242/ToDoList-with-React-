@@ -7,7 +7,7 @@ const TaskList = ({ tasks, deleteTask, toggleTaskCompletion }) => {
             {tasks.map((task, index) => (
                 <TaskItem
                     key={index}
-                    index={index}
+                    //index={index}
                     task={task}
                     deleteTask={() => deleteTask(index)}
                     toggleTaskCompletion={() => toggleTaskCompletion(index)}

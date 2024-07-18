@@ -40,10 +40,10 @@ const styles = {
   },
   button: {
     padding: '10px',
-    border: 'none',
+    border: '1px solid black',
     borderRadius: '4px',
-    backgroundColor: '#28a745',
-    color: '#fff',
+    backgroundColor: '#f9f9f9',
+    color: 'black',
     cursor: 'pointer'
   }
 };

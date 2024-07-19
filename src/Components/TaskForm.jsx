@@ -1,7 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const styles = {
+  form: {
+    display: 'flex',
+    marginBottom: '20px',
+  },
+  input: {
+    flex: '1',
+    padding: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+    marginRight: '10px',
+  },
+  button: {
+    padding: '10px',
+    border: 'none',
+    borderRadius: '4px',
+    backgroundColor: '#ddd',
+    color: 'black',
+    cursor: 'pointer',
+    border: '1px solid black',
+  },
+};
+
+const applyStyles = (element, style) => {
+  Object.assign(element.style, style);
+};
 
 const TaskForm = ({ addTask }) => {
   const [taskTitle, setTaskTitle] = useState('');
+
+  useEffect(() => {
+    applyStyles(document.querySelector('#addTaskForm'), styles.form);
+    applyStyles(document.querySelector('#taskNameInput'), styles.input);
+    applyStyles(document.querySelector('#addTaskButton'), styles.button);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

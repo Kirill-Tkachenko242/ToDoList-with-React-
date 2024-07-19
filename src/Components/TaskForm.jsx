@@ -33,9 +33,9 @@ const TaskForm = ({ addTask }) => {
   const [taskTitle, setTaskTitle] = useState('');
 
   useEffect(() => {
-    applyStyles(document.querySelector('#addTaskForm'), styles.form);
-    applyStyles(document.querySelector('#taskNameInput'), styles.input);
-    applyStyles(document.querySelector('#addTaskButton'), styles.button);
+    applyStyles(document.querySelector('.addTaskForm'), styles.form);
+    applyStyles(document.querySelector('.taskNameInput'), styles.input);
+    applyStyles(document.querySelector('.addTaskButton'), styles.button);
   }, []);
 
   const handleSubmit = (e) => {
@@ -47,15 +47,15 @@ const TaskForm = ({ addTask }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} id="addTaskForm">
+    <form onSubmit={handleSubmit} className="addTaskForm">
       <input
         type="text"
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
         placeholder="Добавьте задачу"
-        id="taskNameInput"
+        className="taskNameInput"
       />
-      <button type="submit" id="addTaskButton">+</button>
+      <button type="submit" className="addTaskButton">+</button>
     </form>
   );
 };

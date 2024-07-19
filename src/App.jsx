@@ -32,8 +32,8 @@ const App = () => {
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    applyStyles(document.querySelector('#main'), styles.appContainer);
-    applyStyles(document.querySelector('#title'), styles.title);
+    applyStyles(document.querySelector('.main'), styles.appContainer);
+    applyStyles(document.querySelector('.title'), styles.title);
   }, []);
 
   const addTask = (task) => {
@@ -60,9 +60,9 @@ const App = () => {
   });
 
   return (
-    <div id="main">
+    <div className="main">
       <section>
-        <h1 id="title">ToDo List</h1>
+        <h1 className="title">ToDo List</h1>
         <TaskForm addTask={addTask} />
         <TaskFilter filter={filter} setFilter={setFilter} />
         <TaskList tasks={filteredTasks} toggleTaskCompletion={toggleTaskCompletion} deleteTask={deleteTask} />

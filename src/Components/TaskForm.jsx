@@ -4,6 +4,8 @@ const styles = {
   form: {
     display: 'flex',
     marginBottom: '20px',
+    backgroundColor: '#f9f9f9',
+    boxShadows: '0 0 10px rgba(0, 0, 0, 0.1)'
   },
   input: {
     flex: '1',
@@ -50,7 +52,7 @@ const TaskForm = ({ addTask }) => {
         type="text"
         value={taskTitle}
         onChange={(e) => setTaskTitle(e.target.value)}
-        placeholder="Enter a new task"
+        placeholder="Добавьте задачу"
         id="taskNameInput"
       />
       <button type="submit" id="addTaskButton">+</button>

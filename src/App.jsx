@@ -6,75 +6,20 @@ import TaskFilter from './Components/TaskFilter';
 const styles = {
   body: {
     margin: '0',
-    fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#f4f4f9',
+    fontFamily: 'Times New Roman',
+    backgroundColor: 'white',
   },
   title: {
     textAlign: 'center',
     color: '#333',
   },
   appContainer: {
-    maxWidth: '600px',
-    margin: '0 auto',
+    maxWidth: '400px',
+    margin: '20px auto',
     padding: '20px',
-    background: '#fff',
+    backgroundColor: '#f9f9f9',
     borderRadius: '8px',
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-  },
-  form: {
-    display: 'flex',
-    marginBottom: '20px',
-  },
-  input: {
-    flex: '1',
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    marginRight: '10px',
-  },
-  button: {
-    padding: '10px',
-    border: 'none',
-    borderRadius: '4px',
-    backgroundColor: '#28a745',
-    color: '#fff',
-    cursor: 'pointer',
-  },
-  buttonHover: {
-    backgroundColor: '#0056b3',
-  },
-  filterContainer: {
-    marginBottom: '20px',
-  },
-  select: {
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-  },
-  taskListContainer: {
-    marginTop: '20px',
-  },
-  taskItemContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-    borderBottom: '1px solid #ddd',
-  },
-  checkbox: {
-    marginRight: '10px',
-  },
-  taskTitle: {
-    flex: '1',
-  },
-  taskTitleCompleted: {
-    textDecoration: 'line-through',
-    color: 'gray',
-  },
-  deleteButton: {
-    background: 'none',
-    border: 'none',
-    color: 'red',
-    cursor: 'pointer',
   },
 };
 
@@ -87,7 +32,6 @@ const App = () => {
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    applyStyles(document.body, styles.body);
     applyStyles(document.querySelector('#main'), styles.appContainer);
     applyStyles(document.querySelector('#title'), styles.title);
   }, []);

@@ -21,11 +21,12 @@ const styles = {
     color: 'gray',
   },
   deleteButton: {
-    background: 'none',
+    padding: '10px',
     border: 'none',
+    borderRadius: '4px',
+    backgroundColor: '#ddd',
     color: 'red',
     cursor: 'pointer',
-    padding: '10px'
   },
 };
 

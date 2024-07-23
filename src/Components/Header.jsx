@@ -23,6 +23,7 @@ const styles = {
     fontSize: '36px',
     width: '40px',
     height: '40px',
+    fontWeight: 'bold',
   },
   loginButton: {
     backgroundColor: '#fff',

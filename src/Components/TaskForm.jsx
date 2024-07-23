@@ -3,25 +3,28 @@ import React, { useState, useEffect } from 'react';
 const styles = {
   form: {
     display: 'flex',
+    flexDirection: 'column',
     marginBottom: '20px',
     backgroundColor: '#f9f9f9',
-    boxShadows: '0 0 10px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+    padding: '10px',
+    borderRadius: '8px',
   },
   input: {
     flex: '1',
     padding: '10px',
     border: '1px solid #ddd',
     borderRadius: '5px',
-    marginRight: '10px',
+    marginBottom: '10px',
   },
   button: {
     padding: '10px',
     border: 'none',
     borderRadius: '4px',
-    backgroundColor: '#ddd',
-    color: 'black',
+    backgroundColor: 'rgb(210, 36, 60)',
+    color: 'white',
     cursor: 'pointer',
-    border: '1px solid black',
+    fontSize: '1vw',
   },
 };
 

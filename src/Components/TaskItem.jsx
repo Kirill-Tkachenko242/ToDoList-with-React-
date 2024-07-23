@@ -6,6 +6,7 @@ const styles = {
     alignItems: 'center',
     padding: '10px',
     borderBottom: '1px solid #ddd',
+    fontFamily: 'Futuris C',
   },
   checkbox: {
     marginRight: '10px',
@@ -24,9 +25,10 @@ const styles = {
     padding: '10px',
     border: 'none',
     borderRadius: '4px',
-    backgroundColor: '#ddd',
-    color: 'red',
+    backgroundColor: 'rgb(210, 35, 60)',
+    color: 'white',
     cursor: 'pointer',
+    fontSize: '1vw',
   },
 };
 

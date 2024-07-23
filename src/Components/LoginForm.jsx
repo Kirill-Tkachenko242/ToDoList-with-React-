@@ -1,42 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
 const styles = {
-  formContainer: {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: '#fff',
-    padding: '90px',
-    borderRadius: '8px',
+  form: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '20px',
+    backgroundColor: '#f9f9f9',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    zIndex: 1000,
-  },
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 999,
+    padding: '10px',
+    borderRadius: '8px',
   },
   input: {
-    display: 'block',
-    width: '100%',
+    flex: '1',
     padding: '10px',
-    margin: '10px 0',
-    borderRadius: '4px',
     border: '1px solid #ddd',
+    borderRadius: '4px',
+    marginRight: '10px',
   },
   button: {
     padding: '10px',
     border: 'none',
     borderRadius: '4px',
-    backgroundColor: '#28a745',
-    color: '#fff',
+    backgroundColor: 'rgb(210, 36, 60)',
+    color: 'white',
     cursor: 'pointer',
-    width: '100%',
+
   },
 };
 
@@ -44,58 +32,35 @@ const applyStyles = (element, style) => {
   Object.assign(element.style, style);
 };
 
-const LoginForm = ({ closeLoginForm }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  
+const TaskForm = ({ addTask }) => {
+  const [taskTitle, setTaskTitle] = useState('');
+
   useEffect(() => {
-    applyStyles(document.querySelector('.overlay'), styles.overlay);
-    applyStyles(document.querySelector('.inputLogin'), styles.input);
-    applyStyles(document.querySelector('.inputPassword'), styles.input);
-    applyStyles(document.querySelector('.loginButton'), styles.button);
+    applyStyles(document.querySelector('.addTaskForm'), styles.form);
+    applyStyles(document.querySelector('.taskNameInput'), styles.input);
+    applyStyles(document.querySelector('.addTaskButton'), styles.button);
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь должна быть логика авторизации
-    console.log('Username:', username);
-    console.log('Password:', password);
-    closeLoginForm(); // Закрыть форму после отправки
+    if (taskTitle.trim()) {
+      addTask({ title: taskTitle });
+      setTaskTitle('');
+    }
   };
 
   return (
-    <>
-      <div className="overlay" onClick={closeLoginForm}></div>
-      <div style={styles.formContainer}>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="inputLogin"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="inputPassword"
-          />
-          <div className="forgot">
-            <section>
-              <input type="checkbox" />
-              <label>Запомнить меня</label>
-            </section>
-            <section>
-              <a href="#">Не помню пароль</a>
-            </section>
-          </div>
-          <button type="submit" className="loginButton">Login</button>
-        </form>
-      </div>
-    </>
+    <form onSubmit={handleSubmit} className="addTaskForm">
+      <input
+        type="text"
+        value={taskTitle}
+        onChange={(e) => setTaskTitle(e.target.value)}
+        placeholder="Добавьте задачу"
+        className="taskNameInput"
+      />
+      <button type="submit" className="addTaskButton">+</button>
+    </form>
   );
 };
 
-export default LoginForm;
+export default TaskForm;

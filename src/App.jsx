@@ -6,18 +6,6 @@ import Header from './Components/Header';
 import LoginForm from './Components/LoginForm';
 
 const styles = {
-  body: {
-    margin: '0',
-    fontFamily: 'Futuris C, Arial, sans-serif',
-    background: 'url("background-image.jpg") no-repeat center center fixed',
-    backgroundSize: 'cover',
-  },
-  main: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '20px',
-    fontFamily: 'Futuris C, Times New Roman, Arial, sans-serif',
-  },
   title: {
     textAlign: 'center',
     color: '#333',
@@ -29,55 +17,6 @@ const styles = {
     backgroundColor: '#f9f9f9',
     borderRadius: '8px',
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-  },
-  input: {
-    flex: '1',
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '5px',
-    marginRight: '10px',
-  },
-  button: {
-    padding: '10px',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  buttonHover: {
-    backgroundColor: '#0056b3',
-  },
-  filterContainer: {
-    marginBottom: '20px',
-  },
-  select: {
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
-  },
-  taskListContainer: {
-    marginTop: '20px',
-  },
-  taskItemContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-    borderBottom: '1px solid #ddd',
-  },
-  checkbox: {
-    marginRight: '10px',
-  },
-  taskTitle: {
-    flex: '1',
-  },
-  taskTitleCompleted: {
-    textDecoration: 'line-through',
-    color: 'gray',
-  },
-  deleteButton: {
-    background: 'none',
-    border: 'none',
-    color: 'red',
-    cursor: 'pointer',
   },
 };
 
@@ -91,7 +30,6 @@ const App = () => {
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
 
   useEffect(() => {
-    applyStyles(document.body, styles.body);
     applyStyles(document.querySelector('#main'), styles.appContainer);
     applyStyles(document.querySelector('#title'), styles.title);
   }, []);

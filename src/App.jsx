@@ -6,17 +6,36 @@ import Header from './Components/Header';
 import LoginForm from './Components/LoginForm';
 
 const styles = {
-  title: {
-    textAlign: 'center',
-    color: '#333',
+  main: {
+    display: 'flex',
+    justifyContent: 'space-between', // Равномерное распределение пространства между элементами
+    alignItems: 'flex-start',
+    padding: '20px',
+    height: '20vh',
+    fontFamily: 'Futuris C, Times New Roman, Arial, sans-serif',
+    paddingTop: '60px',
   },
-  appContainer: {
+  formContainer: {
     maxWidth: '400px',
-    margin: '20px auto',
+    margin: '20px',
+    padding: '10px',
+    backgroundColor: '#f9f9f9',
+    borderRadius: '8px',
+    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+  },
+  tasksContainer: {
+    flex: '1',
+    margin: '20px',
     padding: '20px',
     backgroundColor: '#f9f9f9',
     borderRadius: '8px',
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+    //display: 'flex',
+    //justifyContent: 'flex-end', // Расположим задачи справа
+  },
+  title: {
+    textAlign: 'center',
+    color: 'rgb(0, 0, 0)',
   },
 };
 
@@ -30,8 +49,7 @@ const App = () => {
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
 
   useEffect(() => {
-    applyStyles(document.querySelector('#main'), styles.appContainer);
-    applyStyles(document.querySelector('#title'), styles.title);
+    applyStyles(document.querySelector('#main'), styles.main);
   }, []);
 
   const addTask = (task) => {
@@ -62,12 +80,14 @@ const App = () => {
       <Header onLoginClick={() => setIsLoginFormVisible(true)} />
       {isLoginFormVisible && <LoginForm closeLoginForm={() => setIsLoginFormVisible(false)} />}
       <div id="main">
-        <section>
-          <h1 id="title">ToDo List</h1>
+        <div style={styles.formContainer}>
+          <h1 style={styles.title}>ToDo List</h1>
           <TaskForm addTask={addTask} />
           <TaskFilter filter={filter} setFilter={setFilter} />
+        </div>
+        <div style={styles.tasksContainer}>
           <TaskList tasks={filteredTasks} toggleTaskCompletion={toggleTaskCompletion} deleteTask={deleteTask} />
-        </section>
+        </div>
       </div>
     </div>
   );

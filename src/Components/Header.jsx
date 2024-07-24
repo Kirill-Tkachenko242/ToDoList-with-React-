@@ -9,6 +9,9 @@ const styles = {
     padding: '10px 20px',
     fontFamily: 'Futuris C, Arial, sans-serif',
     color: '#fff',
+    width: '100%', // Делаем ширину на 100%
+    position: 'fixed', // Фиксируем header вверху страницы
+    boxSizing: 'border-box', //Учитываем отступы и границы в размере элемента
   },
   logoContainer: {
     display: 'flex',
@@ -33,6 +36,7 @@ const styles = {
     padding: '10px 20px',
     cursor: 'pointer',
     fontFamily: 'Futuris C, Arial, sans-serif',
+    marginLeft: '10px',
   },
 };
 

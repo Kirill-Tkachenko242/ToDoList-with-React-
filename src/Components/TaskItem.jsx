@@ -13,9 +13,7 @@ const styles = {
   },
   taskTitle: {
     flex: '1',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
+    marginRight: '10px', // Добавим отступ справа для кнопки удаления
   },
   taskTitleCompleted: {
     textDecoration: 'line-through',

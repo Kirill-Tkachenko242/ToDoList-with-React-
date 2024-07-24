@@ -3,12 +3,15 @@ import TaskItem from './TaskItem';
 
 const styles = {
   taskListContainer: {
+    //width: '100%', // Установим ширину на 100% для лучшего выравнивания
     marginTop: '20px',
+    //display: 'flex',
+    flexDirection: 'column',
   },
 };
 
 const applyStyles = (element, style) => {
-    Object.assign(element.style, style);
+  Object.assign(element.style, style);
 };
 
 const TaskList = ({ tasks, toggleTaskCompletion, deleteTask }) => {

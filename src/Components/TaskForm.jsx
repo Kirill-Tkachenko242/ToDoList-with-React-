@@ -3,19 +3,16 @@ import React, { useState, useEffect } from 'react';
 const styles = {
   form: {
     display: 'flex',
-    flexDirection: 'column',
     marginBottom: '20px',
     backgroundColor: '#f9f9f9',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    padding: '10px',
-    borderRadius: '8px',
+    boxShadows: '0 0 10px rgba(0, 0, 0, 0.1)'
   },
   input: {
     flex: '1',
     padding: '10px',
     border: '1px solid #ddd',
     borderRadius: '5px',
-    marginBottom: '10px',
+    marginRight: '10px',
   },
   button: {
     padding: '10px',

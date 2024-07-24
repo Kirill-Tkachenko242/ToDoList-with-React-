@@ -1,48 +1,69 @@
-import React, {useContext} from 'react';
-import TaskContext from '../context/TaskContext';
 
-const TaskItem = ({task, index}) => {
-  const [deleteTask, toggleTaskCompletion] = useContext(TaskContext);
-
-  return (
-    <div className="task" style={styles.task}>
-      <label>
-        <input
-          type="checkbox"
-          className="task-checkbox"
-          checked={task.completed}
-          onChange={() => toggleTaskCompletion(index)}
-        />
-        <span className="checkmark"></span>
-        <p className="task-name" style={styles.taskName}>{task.name}</p>
-      </label>
-      <button type="button" className="deleteButton" style={styles.deleteButton} onClick={() => deleteTask(index)}>x</button>
-    </div>
-  );
-};
+import React, { useEffect } from 'react';
 
 const styles = {
-  task: {
+  taskItemContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
     padding: '10px',
-    borderBottom: '1px solid #eee'
+    borderBottom: '1px solid #ddd',
+    fontFamily: 'Futuris C',
   },
-  taskName: {
+  checkbox: {
+    marginRight: '10px',
+  },
+  taskTitle: {
     flex: '1',
-    margin: '0 10px',
-    color: '#333',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
+    marginRight: '10px', // Добавим отступ справа для кнопки удаления
+  },
+  taskTitleCompleted: {
+    textDecoration: 'line-through',
+    color: 'gray',
   },
   deleteButton: {
+    padding: '10px',
     border: 'none',
-    backgroundColor: 'transparent',
-    color: '#dc3545',
-    cursor: 'pointer'
-  }
+    borderRadius: '4px',
+    backgroundColor: 'rgb(210, 35, 60)',
+    color: 'white',
+    cursor: 'pointer',
+    fontSize: '1vw',
+  },
+};
+
+const applyStyles = (element, style) => {
+  Object.assign(element.style, style);
+};
+
+const TaskItem = ({ task, toggleTaskCompletion, deleteTask }) => {
+  useEffect(() => {
+    const taskItemElements = document.querySelectorAll('.task-item-container');
+    taskItemElements.forEach((element) => applyStyles(element, styles.taskItemContainer));
+
+    const checkboxElements = document.querySelectorAll('.checkbox');
+    checkboxElements.forEach((element) => applyStyles(element, styles.checkbox));
+
+    const taskTitleElements = document.querySelectorAll('.task-title');
+    taskTitleElements.forEach((element) => applyStyles(element, styles.taskTitle));
+
+    const deleteButtonElements = document.querySelectorAll('.delete-button');
+    deleteButtonElements.forEach((element) => applyStyles(element, styles.deleteButton));
+  }, [task]);
+
+  return (
+    <div className="task-item-container">
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={() => toggleTaskCompletion(task.id)}
+        className="checkbox"
+      />
+      <span className={`task-title ${task.completed ? 'completed' : ''}`}>
+        {task.title}
+      </span>
+      <button onClick={() => deleteTask(task.id)} className="delete-button">-</button>
+    </div>
+  );
 };
 
 export default TaskItem;

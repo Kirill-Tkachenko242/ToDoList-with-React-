@@ -1,7 +1,7 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import TaskItem from './TaskItem';
-import TaskContext from '../context/TaskContext';
+import {TaskContext} from '../context/TaskContext';
 
 const styles = {
   taskListContainer: {
@@ -16,14 +16,16 @@ const applyStyles = (element, style) => {
   Object.assign(element.style, style);
 };
 
-const TaskList = ({ tasks, toggleTaskCompletion, deleteTask }) => {
+const TaskList = ({ tasks }) => {
+  const {filteredTasks, toggleTaskCompletion, deleteTask} = useContext(TaskContext);
+
   useEffect(() => {
     applyStyles(document.querySelector('.task-list-container'), styles.taskListContainer);
   }, []);
 
   return (
     <div className="task-list-container">
-      {tasks.map(task => (
+      {filteredTasks.map(task => (
         <TaskItem
           key={task.id}
           task={task}

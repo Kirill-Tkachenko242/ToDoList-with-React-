@@ -1,5 +1,6 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import {TaskContext} from '../context/TaskContext'
 
 const styles = {
   taskItemContainer: {
@@ -28,6 +29,7 @@ const styles = {
     color: 'white',
     cursor: 'pointer',
     fontSize: '1vw',
+    fontSize: '20px', // Увеличим размер текста на кнопке
   },
 };
 
@@ -35,7 +37,8 @@ const applyStyles = (element, style) => {
   Object.assign(element.style, style);
 };
 
-const TaskItem = ({ task, toggleTaskCompletion, deleteTask }) => {
+const TaskItem = ({ task }) => {
+  const {toggleTaskCompletion, deleteTask} = useContext(TaskContext);
   useEffect(() => {
     const taskItemElements = document.querySelectorAll('.task-item-container');
     taskItemElements.forEach((element) => applyStyles(element, styles.taskItemContainer));

@@ -1,5 +1,5 @@
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import {TaskContext} from '../context/TaskContext'
 
 const styles = {
   filterContainer: {
@@ -16,7 +16,9 @@ const applyStyles = (element, style) => {
   Object.assign(element.style, style);
 };
 
-const TaskFilter = ({ filter, setFilter }) => {
+const TaskFilter = () => {
+  const {filter, setFilter} = useContext(TaskContext);
+
   useEffect(() => {
     applyStyles(document.querySelector('.taskFilter'), styles.select);
     applyStyles(document.querySelector('.filter-container'), styles.filterContainer);

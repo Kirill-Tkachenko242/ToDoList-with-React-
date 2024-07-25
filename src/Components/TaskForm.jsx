@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import {TaskContext} from '../context/TaskContext'
 
 const styles = {
   form: {
@@ -22,6 +23,7 @@ const styles = {
     color: 'white',
     cursor: 'pointer',
     fontSize: '1vw',
+    fontSize: '20px', // Увеличим размер текста на кнопке
   },
 };
 
@@ -29,8 +31,9 @@ const applyStyles = (element, style) => {
   Object.assign(element.style, style);
 };
 
-const TaskForm = ({ addTask }) => {
+const TaskForm = () => {
   const [taskTitle, setTaskTitle] = useState('');
+  const { addTask } = useContext(TaskContext);
 
   useEffect(() => {
     applyStyles(document.querySelector('.addTaskForm'), styles.form);

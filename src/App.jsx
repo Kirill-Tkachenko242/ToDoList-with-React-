@@ -4,6 +4,7 @@ import TaskList from './Components/TaskList';
 import TaskFilter from './Components/TaskFilter';
 import Header from './Components/Header';
 import LoginForm from './Components/LoginForm';
+import {TaskProvider} from './context/TaskContext';
 
 const styles = {
   main: {
@@ -76,20 +77,22 @@ const App = () => {
   });
 
   return (
-    <div>
-      <Header onLoginClick={() => setIsLoginFormVisible(true)} />
-      {isLoginFormVisible && <LoginForm closeLoginForm={() => setIsLoginFormVisible(false)} />}
-      <div id="main">
-        <div style={styles.formContainer}>
-          <h1 style={styles.title}>ToDo List</h1>
-          <TaskForm addTask={addTask} />
-          <TaskFilter filter={filter} setFilter={setFilter} />
-        </div>
-        <div style={styles.tasksContainer}>
-          <TaskList tasks={filteredTasks} toggleTaskCompletion={toggleTaskCompletion} deleteTask={deleteTask} />
+    <TaskProvider>
+      <div>
+        <Header onLoginClick={() => setIsLoginFormVisible(true)} />
+        {isLoginFormVisible && <LoginForm closeLoginForm={() => setIsLoginFormVisible(false)} />}
+        <div id="main">
+          <div style={styles.formContainer}>
+            <h1 style={styles.title}>ToDo List</h1>
+            <TaskForm />
+            <TaskFilter />
+          </div>
+          <div style={styles.tasksContainer}>
+            <TaskList tasks={filteredTasks} />
+          </div>
         </div>
       </div>
-    </div>
+    </TaskProvider>
   );
 };
 

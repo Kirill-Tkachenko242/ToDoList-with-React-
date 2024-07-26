@@ -11,7 +11,9 @@ const styles = {
     color: '#fff',
     width: '100%', // Делаем ширину на 100%
     position: 'fixed', // Фиксируем header вверху страницы
-    boxSizing: 'border-box', //Учитываем отступы и границы в размере элемента
+    boxSizing: 'border-box', // Учитываем отступы и границы в размере элемента
+    top: 0, // Фиксируем header в самом верху
+    left: 0, // Фиксируем header в левой части
   },
   logoContainer: {
     display: 'flex',
@@ -24,8 +26,6 @@ const styles = {
   },
   companyName: {
     fontSize: '36px',
-    width: '40px',
-    height: '40px',
     fontWeight: 'bold',
   },
   loginButton: {
@@ -44,9 +44,11 @@ const Header = ({ onLoginClick }) => {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
-        <img src="LukoilWhiteLogo.png" 
-        alt="Logo" 
-        style={styles.logo} />
+        <img 
+          src="/LukoilWhiteLogo.png"
+          alt="Logo" 
+          style={styles.logo} 
+        />
         <span style={styles.companyName}>ЛУКОЙЛ</span>
       </div>
       <button style={styles.loginButton} onClick={onLoginClick}>Войти</button>
@@ -54,4 +56,4 @@ const Header = ({ onLoginClick }) => {
   );
 };
 
-export default Header;
+export default Header; // Экспортируем компонент Header по умолчанию

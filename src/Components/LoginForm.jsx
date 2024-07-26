@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // Импортируем необходимые хуки из React
 
+// Определяем стили для компонентов
 const styles = {
   formContainer: {
     position: 'fixed',
@@ -49,7 +50,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: '10px',
-    marginTop: '20px',
+    marginTop: '20px', // Дублирующаяся строка
   },
   checkboxSection: {
     display: 'flex',
@@ -68,24 +69,43 @@ const styles = {
   },
 };
 
+// Функция для применения стилей к элементу
 const applyStyles = (element, style) => {
-  Object.assign(element.style, style);
+  Object.assign(element.style, style); // Применяем переданные стили к указанному элементу
+};
+
+// Хук для применения стилей ко всем элементам при монтировании компонента
+const useApplyStyles = () => {
+  useEffect(() => {
+    const styleMap = {
+      '.formContainer': styles.formContainer,
+      '.Enterence': styles.welcome,
+      '.overlay': styles.overlay,
+      '.inputLogin': styles.input,
+      '.inputPassword': styles.input,
+      '.forgot': styles.forgot,
+      '.checkboxSection': styles.checkboxSection,
+      '.loginCheckbox': styles.checkbox,
+      '.forgotLink': styles.link,
+      '.loginButton': styles.button,
+    };
+
+    Object.keys(styleMap).forEach(selector => {
+      document.querySelectorAll(selector).forEach(element => {
+        applyStyles(element, styleMap[selector]);
+      });
+    });
+  }, []);
 };
 
 const LoginForm = ({ closeLoginForm }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  
-  useEffect(() => {
-    applyStyles(document.querySelector('.Enterence'), styles.welcome);
-    applyStyles(document.querySelector('.overlay'), styles.overlay);
-    applyStyles(document.querySelector('.inputLogin'), styles.input);
-    applyStyles(document.querySelector('.inputPassword'), styles.input);
-    applyStyles(document.querySelector('.loginButton'), styles.button);
-  }, []);
+  const [username, setUsername] = useState(''); // Создаем состояние для имени пользователя
+  const [password, setPassword] = useState(''); // Создаем состояние для пароля
+  useApplyStyles(); // Применяем стили при монтировании компонента
 
+  // Обработчик отправки формы
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Предотвращаем стандартное поведение формы
     // Здесь должна быть логика авторизации
     console.log('Username:', username);
     console.log('Password:', password);
@@ -95,7 +115,7 @@ const LoginForm = ({ closeLoginForm }) => {
   return (
     <>
       <div className="overlay" onClick={closeLoginForm}></div>
-      <div style={styles.formContainer}>
+      <div className="formContainer">
         <div className="Enterence">
           <h1>Вход в систему</h1>
         </div>
@@ -103,31 +123,35 @@ const LoginForm = ({ closeLoginForm }) => {
           <input
             type="text"
             placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="inputLogin"
+            value={username} // Связываем значение поля ввода с состоянием username
+            onChange={(e) => setUsername(e.target.value)} // Обновляем состояние username при изменении ввода
+            className="inputLogin" // Класс для поля ввода имени пользователя
           />
           <input
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="inputPassword"
+            value={password} // Связываем значение поля ввода с состоянием password
+            onChange={(e) => setPassword(e.target.value)} // Обновляем состояние password при изменении ввода
+            className="inputPassword" // Класс для поля ввода пароля
           />
-          <div className="forgot" style={styles.forgot}>
-            <section style={styles.checkboxSection}>
-              <input type="checkbox" style={styles.checkbox} />
+          <div className="forgot">
+            <section className="checkboxSection">
+              <input type="checkbox" className="loginCheckbox" /> {/* Класс для чекбокса */}
               <label>Запомнить меня</label>
             </section>
             <section>
-              <a href="#" style={styles.link} onMouseOver={(e) => applyStyles(e.target, styles.linkHover)} onMouseOut={(e) => applyStyles(e.target, styles.link)}>Не помню пароль</a>
+              <a 
+                href="#" 
+                className="forgotLink" 
+                onMouseOver={(e) => applyStyles(e.target, styles.linkHover)} 
+                onMouseOut={(e) => applyStyles(e.target, styles.link)}>Не помню пароль</a> {/* Ссылка для восстановления пароля */}
             </section>
           </div>
-          <button type="submit" className="loginButton">Войти</button>
+          <button type="submit" className="loginButton">Войти</button> {/* Кнопка для отправки формы */}
         </form>
       </div>
     </>
   );
 };
 
-export default LoginForm;
+export default LoginForm; // Экспортируем компонент LoginForm по умолчанию

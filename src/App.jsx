@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TaskForm from './Components/TaskForm';
 import TaskList from './Components/TaskList';
 import TaskFilter from './Components/TaskFilter';
 import Header from './Components/Header';
 import LoginForm from './Components/LoginForm';
-import {TaskProvider} from './context/TaskContext';
+import { TaskProvider, TaskContext } from './context/TaskContext';
 
+// Определение стилей для компонентов
 const styles = {
   main: {
     display: 'flex',
@@ -31,8 +32,6 @@ const styles = {
     backgroundColor: '#f9f9f9',
     borderRadius: '8px',
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-    //display: 'flex',
-    //justifyContent: 'flex-end', // Расположим задачи справа
   },
   title: {
     textAlign: 'center',
@@ -40,33 +39,20 @@ const styles = {
   },
 };
 
+// Функция для применения стилей к элементам
 const applyStyles = (element, style) => {
   Object.assign(element.style, style);
 };
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState('all');
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
+  const { tasks, filter } = useContext(TaskContext); // Используем контекст для получения задач и фильтра
 
   useEffect(() => {
     applyStyles(document.querySelector('#main'), styles.main);
   }, []);
 
-  const addTask = (task) => {
-    setTasks([...tasks, { ...task, id: Date.now(), completed: false }]);
-  };
-
-  const toggleTaskCompletion = (taskId) => {
-    setTasks(tasks.map(task =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    ));
-  };
-
-  const deleteTask = (taskId) => {
-    setTasks(tasks.filter(task => task.id !== taskId));
-  };
-
+  // Фильтрация задач в зависимости от выбранного фильтра
   const filteredTasks = tasks.filter(task => {
     if (filter === 'completed') {
       return task.completed;
@@ -79,16 +65,16 @@ const App = () => {
   return (
     <TaskProvider>
       <div>
-        <Header onLoginClick={() => setIsLoginFormVisible(true)} />
-        {isLoginFormVisible && <LoginForm closeLoginForm={() => setIsLoginFormVisible(false)} />}
+        <Header onLoginClick={() => setIsLoginFormVisible(true)} /> {/* Заголовок с кнопкой для отображения формы входа */}
+        {isLoginFormVisible && <LoginForm closeLoginForm={() => setIsLoginFormVisible(false)} />} {/* Форма входа */}
         <div id="main">
           <div style={styles.formContainer}>
             <h1 style={styles.title}>ToDo List</h1>
-            <TaskForm />
-            <TaskFilter />
+            <TaskForm /> {/* Форма для добавления новых задач */}
+            <TaskFilter /> {/* Фильтр для задач */}
           </div>
           <div style={styles.tasksContainer}>
-            <TaskList tasks={filteredTasks} />
+            <TaskList tasks={filteredTasks} /> {/* Список задач */}
           </div>
         </div>
       </div>

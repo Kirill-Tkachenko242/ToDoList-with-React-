@@ -14,6 +14,7 @@ const styles = {
     boxSizing: 'border-box', // Учитываем отступы и границы в размере элемента
     top: 0, // Фиксируем header в самом верху
     left: 0, // Фиксируем header в левой части
+    zIndex: '1000',
   },
   logoContainer: {
     display: 'flex',

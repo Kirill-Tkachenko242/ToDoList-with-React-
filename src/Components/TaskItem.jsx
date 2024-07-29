@@ -28,10 +28,6 @@ const styles = {
     flex: '1',
     marginRight: '10px', // Добавим отступ справа для кнопки удаления
   },
-  taskTitleCompleted: {
-    textDecoration: 'line-through',
-    color: 'gray',
-  },
   deleteButton: {
     padding: '10px',
     border: 'none',
@@ -48,7 +44,7 @@ const styles = {
     width: '24px',
     height: '24px',
     borderRadius: '50%',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     border: '2px solid #ddd',
     display: 'flex',
     alignItems: 'center',
